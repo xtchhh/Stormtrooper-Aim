@@ -8,7 +8,6 @@ public class StormTrooper : MonoBehaviour
     public float moveSpeed;
     private Vector2 move;
     private Vector3 forward;
-    private Vector3 direction;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -43,7 +42,7 @@ public class StormTrooper : MonoBehaviour
         Vector3 relativeForwardInput = forward * cameraFrontDirection;
         Vector3 relativeSideInput = right * cameraSideDirection;
 
-        direction = relativeForwardInput + relativeSideInput;
+        Vector3 direction = relativeForwardInput + relativeSideInput;
 
         transform.Translate(direction * moveSpeed * Time.deltaTime, Space.World);
     }
