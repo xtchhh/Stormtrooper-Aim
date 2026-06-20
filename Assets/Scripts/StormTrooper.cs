@@ -7,7 +7,7 @@ public class StormTrooper : MonoBehaviour
     public ThirdPersonActions playeractions;
     public float moveSpeed;
     private Vector2 move;
-    private Vector3 relativeForwardInput;
+    private Vector3 forward;
     private Vector3 direction;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -34,13 +34,13 @@ public class StormTrooper : MonoBehaviour
         float cameraFrontDirection = move.y;
         float cameraSideDirection = move.x;
 
-        Vector3 forward = playercamera.transform.forward;
+        forward = playercamera.transform.forward;
         forward.y = 0;
         forward = forward.normalized;
 
         Vector3 right = playercamera.transform.right;
 
-        relativeForwardInput = forward * cameraFrontDirection;
+        Vector3 relativeForwardInput = forward * cameraFrontDirection;
         Vector3 relativeSideInput = right * cameraSideDirection;
 
         direction = relativeForwardInput + relativeSideInput;
@@ -52,7 +52,7 @@ public class StormTrooper : MonoBehaviour
     {
         if (move.sqrMagnitude > 0.1)
         {
-            this.transform.rotation = Quaternion.LookRotation(relativeForwardInput);
+            this.transform.rotation = Quaternion.LookRotation(forward);
         }
     }
 }
