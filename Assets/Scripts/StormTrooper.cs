@@ -49,9 +49,6 @@ public class StormTrooper : MonoBehaviour
 
     void LookRot()
     {
-        if (move.sqrMagnitude > 0.1)
-        {
-            this.transform.rotation = Quaternion.LookRotation(forward);
-        }
+        this.transform.rotation = Quaternion.LookRotation(forward);
     }
 }
