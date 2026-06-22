@@ -5,6 +5,7 @@ public class CrossHair : MonoBehaviour
 {
     public GameObject point;
     public float rotateSpeed;
+    public Camera playercamera;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -16,6 +17,7 @@ public class CrossHair : MonoBehaviour
     void Update()
     {
         Bullet();
+        BulletRotation();
     }
 
     void Bullet()
@@ -31,6 +33,12 @@ public class CrossHair : MonoBehaviour
         {
             Debug.Log($"Missed");
         }
+    }
+
+    void BulletRotation()
+    {
+        Vector3 forwardDirection = playercamera.transform.forward;
+        transform.rotation = Quaternion.LookRotation(forwardDirection);
     }
 
     public bool IsShot()
