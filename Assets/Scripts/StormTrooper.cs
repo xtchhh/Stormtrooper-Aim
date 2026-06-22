@@ -20,6 +20,7 @@ public class StormTrooper : MonoBehaviour
         playeractions.Enable();
     }
 
+    // Update is called once per frame
     void Update()
     {
         Movement();
