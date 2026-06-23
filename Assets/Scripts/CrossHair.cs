@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class CrossHair : MonoBehaviour
 {
-    public GameObject point;
+    public GameObject rotatePoint;
     public float rotateSpeed;
     public Camera playercamera;
 
@@ -16,32 +16,23 @@ public class CrossHair : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Bullet();
-        BulletRotation();
+        Crosshair();
+        CrossHairRotation();
     }
 
-    void Bullet()
+    void Crosshair()
     {
         Debug.DrawRay(transform.position, transform.forward, Color.red * 5f);
-        transform.RotateAround(point.transform.position, transform.forward, rotateSpeed * Time.deltaTime);
-
-        if (IsShot() && Mouse.current.leftButton.wasPressedThisFrame)
-        {
-            Debug.Log($"Killed");
-        }
-        else
-        {
-            Debug.Log($"Missed");
-        }
+        transform.RotateAround(rotatePoint.transform.position, transform.forward, rotateSpeed * Time.deltaTime);
     }
 
-    void BulletRotation()
+    void CrossHairRotation()
     {
         Vector3 forwardDirection = playercamera.transform.forward;
         transform.rotation = Quaternion.LookRotation(forwardDirection);
     }
 
-    public bool IsShot()
+    public bool InSight()
     {
         if (Physics.Raycast(transform.position, transform.forward, 50f))
         {

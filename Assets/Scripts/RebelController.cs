@@ -5,6 +5,7 @@ public class RebelController : MonoBehaviour
 {
     public GameObject stormTrooper;
     public NavMeshAgent rebelAI;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -20,7 +21,14 @@ public class RebelController : MonoBehaviour
     void Move()
     {
         float distanceToPlayer = Vector3.Distance(this.transform.position, stormTrooper.transform.position);
+        Vector3 directionToPlayer = (stormTrooper.transform.position - this.transform.position).normalized;
 
         rebelAI.SetDestination(stormTrooper.transform.position);
+
+        if (distanceToPlayer <= rebelAI.stoppingDistance)
+        {
+            Quaternion lookRot = Quaternion.LookRotation(directionToPlayer);
+            this.transform.rotation = Quaternion.Lerp(this.transform.rotation, lookRot, 8 * Time.deltaTime);
+        }
     }
 }
