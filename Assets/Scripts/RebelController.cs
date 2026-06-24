@@ -5,18 +5,19 @@ public class RebelController : MonoBehaviour
 {
     public GameObject stormTrooper;
     public NavMeshAgent rebelAI;
+    public GameObject rebelBulletSpawn;
+    public GameObject bullet;
+    public float rebelBulletSpeed;
+    public float bulletRate;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Awake()
+    void Start()
     {
-        //bulletCollisionScript = GetComponent<BulletCollision>();
+        InvokeRepeating(nameof(RebelBullet), 0.1f, bulletRate);
     }
 
-    // Update is called once per frame
     void Update()
     {
         Move();
-        //BulletContact();
     }
 
     void Move()
@@ -32,4 +33,14 @@ public class RebelController : MonoBehaviour
             this.transform.rotation = Quaternion.Lerp(this.transform.rotation, lookRot, 8 * Time.deltaTime);
         }
     }
+
+    void RebelBullet()
+    {
+        if (this.gameObject != null)
+        {
+            var tempBullet = Instantiate(bullet, rebelBulletSpawn.transform.position, rebelBulletSpawn.transform.rotation);
+            tempBullet.GetComponent<Rigidbody>().linearVelocity = rebelBulletSpawn.transform.forward * rebelBulletSpeed;
+        }
+    }
+
 }
