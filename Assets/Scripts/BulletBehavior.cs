@@ -21,7 +21,6 @@ public class BulletBehavior : MonoBehaviour
 
     void Bullet()
     {
-
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
             var tempBullet = Instantiate(bullet, bulletSpawn.transform.position, bulletSpawn.transform.rotation);
@@ -34,5 +33,4 @@ public class BulletBehavior : MonoBehaviour
         Vector3 forwardDirection = playerCamera.transform.forward;
         bulletSpawn.rotation = Quaternion.LookRotation(forwardDirection);
     }
-
 }
