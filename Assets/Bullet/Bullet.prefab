@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5800026097463809041}
   - component: {fileID: -8763036590580410108}
   - component: {fileID: 3596299885726317003}
+  - component: {fileID: 134774028254355930}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Untagged
@@ -28,9 +29,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1882064074991390082}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 97.75024, y: 0.6961, z: -309.49603}
-  m_LocalScale: {x: -0.063672, y: 0.054896, z: 1}
+  m_LocalRotation: {x: -0.32242066, y: 0.23317331, z: 0.082277864, w: 0.91373163}
+  m_LocalPosition: {x: 110.08704, y: -1.41, z: -251.652}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.28}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -131,7 +132,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b265c11a4a4dd024f852cf44be34554d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BulletCollision
-  layermask:
+--- !u!65 &134774028254355930
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1882064074991390082}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 256
-  rebel: {fileID: 0}
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.99999994, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}

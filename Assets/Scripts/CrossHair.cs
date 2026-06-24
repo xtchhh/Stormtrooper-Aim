@@ -22,7 +22,6 @@ public class CrossHair : MonoBehaviour
 
     void Crosshair()
     {
-        Debug.DrawRay(transform.position, transform.forward, Color.red * 5f);
         transform.RotateAround(rotatePoint.transform.position, transform.forward, rotateSpeed * Time.deltaTime);
     }
 
@@ -30,17 +29,5 @@ public class CrossHair : MonoBehaviour
     {
         Vector3 forwardDirection = playercamera.transform.forward;
         transform.rotation = Quaternion.LookRotation(forwardDirection);
-    }
-
-    public bool InSight()
-    {
-        if (Physics.Raycast(transform.position, transform.forward, 50f))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
     }
 }

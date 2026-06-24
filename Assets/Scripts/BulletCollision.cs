@@ -4,38 +4,22 @@ using UnityEngine.AI;
 
 public class BulletCollision : MonoBehaviour
 {
-    public LayerMask layermask;
-    public GameObject rebel;
-    
-    // Update is called once per frame
-    void Update()
-    {/*
-        if (IsShot())
-        {
-            Destroy(this.gameObject);
-        }
-        */
-    }
+    private GameObject rebel;
 
-    public bool IsShot()
+    void Start()
     {
-        if (Physics.Raycast(transform.position, transform.forward, 1f))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        rebel = GameObject.Find("Rebel Idle");
     }
 
     void OnCollisionEnter(Collision collision)
     {
+        //Debug.Log($"You are colliding");
         Destroy(this.gameObject);
-        Debug.Log($"Collided");
+
         if (collision.gameObject.name == "Rebel Idle")
         {
             Destroy(rebel);
+            Debug.Log($"Rebel Killed");
         }
     }
 }
