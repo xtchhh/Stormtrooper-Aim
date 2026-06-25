@@ -4,6 +4,7 @@ public class BulletCollision : MonoBehaviour
 {
     private GameObject rebel;
     public GameObject stormTrooper;
+    public AudioSource death;
 
     void Start()
     {
@@ -24,6 +25,7 @@ public class BulletCollision : MonoBehaviour
         if (collision.gameObject.name == "Idle")
         {
             stormTrooper.SetActive(false);
+            death.Play();
         }
     }
 }

@@ -8,12 +8,14 @@ public class RebelController : MonoBehaviour
     public GameObject rebelBulletSpawn;
     public GameObject bullet;
     public Animator animator;
+    public AudioSource a280;
     public float rebelBulletSpeed;
     public float bulletRate;
 
     void Start()
     {
         InvokeRepeating(nameof(RebelBullet), 2.0f, bulletRate);
+        InvokeRepeating(nameof(PlaySound), 1.0f, 1.0f);
     }
 
     void Update()
@@ -43,5 +45,10 @@ public class RebelController : MonoBehaviour
             var tempBullet = Instantiate(bullet, rebelBulletSpawn.transform.position, rebelBulletSpawn.transform.rotation);
             tempBullet.GetComponent<Rigidbody>().linearVelocity = rebelBulletSpawn.transform.forward * rebelBulletSpeed;
         }
+    }
+
+    void PlaySound()
+    {
+        a280.Play();
     }
 }
