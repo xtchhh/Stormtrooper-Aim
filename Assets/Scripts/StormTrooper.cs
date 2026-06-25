@@ -11,10 +11,16 @@ public class StormTrooper : MonoBehaviour
     public float radius;
     public float maxGroundedDistance;
     public float velocity;
+    public AudioSource audioSource;
     private Vector2 move;
     private Vector3 forward;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        InvokeRepeating(nameof(PlaySound), 1.0f, 1.0f);
+    }
+
     void Awake()
     {
         playeractions = new ThirdPersonActions();
@@ -56,6 +62,11 @@ public class StormTrooper : MonoBehaviour
     void LookRot()
     {
         this.transform.rotation = Quaternion.LookRotation(forward);
+    }
+
+    void PlaySound()
+    {
+        audioSource.Play();
     }
 
     void Gravity()

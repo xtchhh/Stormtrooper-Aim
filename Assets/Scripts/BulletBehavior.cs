@@ -8,6 +8,7 @@ public class BulletBehavior : MonoBehaviour
     public Camera playerCamera;
     public Transform bulletSpawn;
     public float bulletSpeed;
+    public AudioSource e11;
 
     void Update()
     {
@@ -16,6 +17,7 @@ public class BulletBehavior : MonoBehaviour
 
     void Bullet()
     {
+        //Ray ray = playerCamera.ScreenPointToRay();
         if (Physics.Raycast(crosshair.transform.position, crosshair.transform.forward, out RaycastHit hit))
         {
             Debug.DrawRay(crosshair.transform.position, crosshair.transform.forward, Color.blue);
@@ -27,6 +29,7 @@ public class BulletBehavior : MonoBehaviour
 
             if (Mouse.current.leftButton.wasPressedThisFrame)
             {
+                e11.Play();
                 var tempBullet = Instantiate(bullet, bulletSpawn.position, bulletSpawn.rotation);
                 tempBullet.GetComponent<Rigidbody>().linearVelocity = bulletSpawn.forward * bulletSpeed;
             }
