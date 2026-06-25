@@ -19,8 +19,8 @@ public class BulletBehavior : MonoBehaviour
         if (Physics.Raycast(crosshair.transform.position, crosshair.transform.forward, out RaycastHit hit))
         {
             Debug.DrawRay(crosshair.transform.position, crosshair.transform.forward, Color.blue);
-            Debug.Log($"You are colliding at " + hit.point);
-            Debug.Log(hit.distance);
+            //Debug.Log($"You are colliding at " + hit.point);
+            //Debug.Log(hit.distance);
 
             Vector3 directionToObject = (hit.point - bulletSpawn.position).normalized;
             bulletSpawn.rotation = Quaternion.LookRotation(directionToObject);

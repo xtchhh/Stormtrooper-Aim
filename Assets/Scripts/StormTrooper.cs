@@ -10,7 +10,7 @@ public class StormTrooper : MonoBehaviour
     public float aboveTransform;
     public float radius;
     public float maxGroundedDistance;
-    private float velocity;
+    public float velocity;
     private Vector2 move;
     private Vector3 forward;
 
@@ -30,7 +30,7 @@ public class StormTrooper : MonoBehaviour
     {
         Movement();
         LookRot();
-        Gravity();
+        //Gravity();
     }
 
     void Movement()
@@ -60,14 +60,14 @@ public class StormTrooper : MonoBehaviour
 
     void Gravity()
     {
-        if (!IsGrounded())
+        if (IsGrounded())
         {
-            velocity -= 9.81f * Time.deltaTime;
+            velocity = 0f;
+            Debug.Log($"Grounded");
         }
         else
         {
-            Debug.Log($"Is Grounded");
-            velocity = 0;
+            velocity -= 9.81f * Time.deltaTime;
         }
     }
 
@@ -75,13 +75,13 @@ public class StormTrooper : MonoBehaviour
     {
         if (IsGrounded())
         {
-            Gizmos.DrawSphere(transform.position + -transform.up * maxGroundedDistance, radius);
+            Gizmos.DrawSphere(transform.position + transform.up * aboveTransform, radius);
         }
     }
 
     bool IsGrounded()
     {
-        if (Physics.SphereCast(transform.position + transform.up * aboveTransform, radius, -transform.up, out RaycastHit hitGround, maxGroundedDistance))
+        if (Physics.SphereCast(transform.position + transform.up * aboveTransform, radius, -transform.up, out RaycastHit hit, maxGroundedDistance))
         {
             return true;
         }

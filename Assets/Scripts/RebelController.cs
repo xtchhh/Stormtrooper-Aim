@@ -13,7 +13,7 @@ public class RebelController : MonoBehaviour
 
     void Start()
     {
-        InvokeRepeating(nameof(RebelBullet), 0.1f, bulletRate);
+        InvokeRepeating(nameof(RebelBullet), 2.0f, bulletRate);
     }
 
     void Update()

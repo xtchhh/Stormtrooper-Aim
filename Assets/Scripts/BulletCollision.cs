@@ -18,7 +18,7 @@ public class BulletCollision : MonoBehaviour
         if (collision.gameObject.name == "Rebel Idle")
         {
             Destroy(rebel);
-            Debug.Log($"Rebel Killed");
+            //Debug.Log($"Rebel Killed");
         }
 
         if (collision.gameObject.name == "Idle")
