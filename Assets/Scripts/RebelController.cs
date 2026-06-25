@@ -7,6 +7,7 @@ public class RebelController : MonoBehaviour
     public NavMeshAgent rebelAI;
     public GameObject rebelBulletSpawn;
     public GameObject bullet;
+    public Animator animator;
     public float rebelBulletSpeed;
     public float bulletRate;
 
@@ -31,6 +32,7 @@ public class RebelController : MonoBehaviour
         {
             Quaternion lookRot = Quaternion.LookRotation(directionToPlayer);
             this.transform.rotation = Quaternion.Lerp(this.transform.rotation, lookRot, 8 * Time.deltaTime);
+            animator.Play("Rebel Idle");
         }
     }
 
@@ -42,5 +44,4 @@ public class RebelController : MonoBehaviour
             tempBullet.GetComponent<Rigidbody>().linearVelocity = rebelBulletSpawn.transform.forward * rebelBulletSpeed;
         }
     }
-
 }

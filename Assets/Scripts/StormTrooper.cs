@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,6 +7,10 @@ public class StormTrooper : MonoBehaviour
     public Camera playercamera;
     public ThirdPersonActions playeractions;
     public float moveSpeed;
+    public float aboveTransform;
+    public float radius;
+    public float maxGroundedDistance;
+    private float velocity;
     private Vector2 move;
     private Vector3 forward;
 
@@ -25,6 +30,7 @@ public class StormTrooper : MonoBehaviour
     {
         Movement();
         LookRot();
+        Gravity();
     }
 
     void Movement()
@@ -42,7 +48,7 @@ public class StormTrooper : MonoBehaviour
         Vector3 relativeForwardInput = forward * cameraFrontDirection;
         Vector3 relativeSideInput = right * cameraSideDirection;
 
-        Vector3 direction = relativeForwardInput + relativeSideInput;
+        Vector3 direction = relativeForwardInput + relativeSideInput + new Vector3(0, velocity, 0);
 
         transform.Translate(direction * moveSpeed * Time.deltaTime, Space.World);
     }
@@ -50,5 +56,38 @@ public class StormTrooper : MonoBehaviour
     void LookRot()
     {
         this.transform.rotation = Quaternion.LookRotation(forward);
+    }
+
+    void Gravity()
+    {
+        if (!IsGrounded())
+        {
+            velocity -= 9.81f * Time.deltaTime;
+        }
+        else
+        {
+            Debug.Log($"Is Grounded");
+            velocity = 0;
+        }
+    }
+
+    void OnDrawGizmos()
+    {
+        if (IsGrounded())
+        {
+            Gizmos.DrawSphere(transform.position + -transform.up * maxGroundedDistance, radius);
+        }
+    }
+
+    bool IsGrounded()
+    {
+        if (Physics.SphereCast(transform.position + transform.up * aboveTransform, radius, -transform.up, out RaycastHit hitGround, maxGroundedDistance))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }
