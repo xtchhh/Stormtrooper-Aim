@@ -21,9 +21,7 @@ public class CrossHair : MonoBehaviour
 
     void CrossHairRotation()
     {
-
-        
         Vector3 forwardDirection = playercamera.transform.forward;
-        transform.localRotation = Quaternion.LookRotation(forwardDirection);
+        transform.rotation = Quaternion.LookRotation(forwardDirection);
     }
 }
