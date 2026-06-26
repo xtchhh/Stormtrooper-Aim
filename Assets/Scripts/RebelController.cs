@@ -15,7 +15,7 @@ public class RebelController : MonoBehaviour
     void Start()
     {
         InvokeRepeating(nameof(RebelBullet), 2.0f, bulletRate);
-        InvokeRepeating(nameof(PlaySound), 1.0f, 1.0f);
+        InvokeRepeating(nameof(PlaySound), bulletRate, bulletRate);
     }
 
     void Update()
@@ -29,6 +29,7 @@ public class RebelController : MonoBehaviour
         Vector3 directionToPlayer = (stormTrooper.transform.position - this.transform.position).normalized;
 
         rebelAI.SetDestination(stormTrooper.transform.position);
+        animator.Play("Rebel Run");
 
         if (distanceToPlayer <= rebelAI.stoppingDistance)
         {

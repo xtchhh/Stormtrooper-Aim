@@ -6,20 +6,12 @@ public class StormTrooper : MonoBehaviour
 {
     public Camera playercamera;
     public ThirdPersonActions playeractions;
+    public CharacterController stormActions;
+    public Animator animator;
     public float moveSpeed;
-    public float aboveTransform;
-    public float radius;
-    public float maxGroundedDistance;
     public float velocity;
-    public AudioSource audioSource;
     private Vector2 move;
     private Vector3 forward;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        InvokeRepeating(nameof(PlaySound), 0.5f, 0.5f);
-    }
 
     void Awake()
     {
@@ -31,12 +23,12 @@ public class StormTrooper : MonoBehaviour
         playeractions.Enable();
     }
 
-    // Update is called once per frame
     void Update()
     {
         Movement();
         LookRot();
-        //Gravity();
+        Gravity();
+        SimpleAnim();
     }
 
     void Movement()
@@ -56,49 +48,37 @@ public class StormTrooper : MonoBehaviour
 
         Vector3 direction = relativeForwardInput + relativeSideInput + new Vector3(0, velocity, 0);
 
-        transform.Translate(direction * moveSpeed * Time.deltaTime, Space.World);
+        stormActions.Move(direction * moveSpeed * Time.deltaTime);
     }
 
     void LookRot()
     {
-        this.transform.rotation = Quaternion.LookRotation(forward);
-    }
-
-    void PlaySound()
-    {
-        audioSource.Play();
+        stormActions.transform.rotation = Quaternion.LookRotation(forward);
     }
 
     void Gravity()
     {
-        if (IsGrounded())
-        {
-            velocity = 0f;
-            Debug.Log($"Grounded");
-        }
-        else
+        if (!stormActions.isGrounded)
         {
             velocity -= 9.81f * Time.deltaTime;
         }
-    }
-
-    void OnDrawGizmos()
-    {
-        if (IsGrounded())
+        else
         {
-            Gizmos.DrawSphere(transform.position + transform.up * aboveTransform, radius);
+            velocity = 0f;
         }
     }
 
-    bool IsGrounded()
+    void SimpleAnim()
     {
-        if (Physics.SphereCast(transform.position + transform.up * aboveTransform, radius, -transform.up, out RaycastHit hit, maxGroundedDistance))
+        if (playeractions.Player.Move.ReadValue<Vector2>().sqrMagnitude > 0.1)
         {
-            return true;
+            animator.SetBool("isWalking", true);
+            animator.SetBool("isIdling", false);
         }
         else
         {
-            return false;
+            animator.SetBool("isIdling", true);
+            animator.SetBool("isWalking", false);
         }
     }
 }

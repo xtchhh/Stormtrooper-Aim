@@ -16,7 +16,7 @@ public class CrossHair : MonoBehaviour
 
     void Crosshair()
     {
-        transform.RotateAround(rotatePoint.transform.position, Vector3.forward, rotateSpeed * Time.deltaTime);
+        transform.RotateAround(rotatePoint.transform.position, rotatePoint.transform.forward, rotateSpeed * Time.deltaTime);
     }
 
     void CrossHairRotation()

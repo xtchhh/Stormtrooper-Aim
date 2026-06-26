@@ -1,10 +1,13 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class BulletCollision : MonoBehaviour
 {
     private GameObject rebel;
+    public GameObject rebelRagdoll;
     public GameObject stormTrooper;
     public AudioSource death;
+    public Animator animator;
 
     void Start()
     {
@@ -19,6 +22,7 @@ public class BulletCollision : MonoBehaviour
         if (collision.gameObject.name == "Rebel Idle")
         {
             Destroy(rebel);
+            rebelRagdoll.SetActive(true);
             Debug.Log($"Rebel Killed");
         }
 
