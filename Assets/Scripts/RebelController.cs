@@ -29,14 +29,9 @@ public class RebelController : MonoBehaviour
         Vector3 directionToPlayer = (stormTrooper.transform.position - this.transform.position).normalized;
 
         rebelAI.SetDestination(stormTrooper.transform.position);
-        animator.Play("Rebel Run");
 
-        if (distanceToPlayer <= rebelAI.stoppingDistance)
-        {
-            Quaternion lookRot = Quaternion.LookRotation(directionToPlayer);
-            this.transform.rotation = Quaternion.Lerp(this.transform.rotation, lookRot, 8 * Time.deltaTime);
-            animator.Play("Rebel Idle");
-        }
+        Quaternion lookRot = Quaternion.LookRotation(directionToPlayer);
+        this.transform.rotation = Quaternion.Lerp(this.transform.rotation, lookRot, 8 * Time.deltaTime);
     }
 
     void RebelBullet()

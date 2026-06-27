@@ -7,12 +7,12 @@ public class BulletCollision : MonoBehaviour
     public GameObject rebelRagdoll;
     public GameObject stormTrooper;
     public AudioSource death;
+    public AudioSource rebelDeath;
     public Animator animator;
 
     void Start()
     {
         rebel = GameObject.Find("Rebel Idle");
-        //stormTrooper = GameObject.Find("Idle");
     }
 
     void OnCollisionEnter(Collision collision)
@@ -22,7 +22,7 @@ public class BulletCollision : MonoBehaviour
         if (collision.gameObject.name == "Rebel Idle")
         {
             Destroy(rebel);
-            rebelRagdoll.SetActive(true);
+            rebelDeath.Play();
             Debug.Log($"Rebel Killed");
         }
 
