@@ -3,23 +3,17 @@ using UnityEngine.AI;
 
 public class BulletCollision : MonoBehaviour
 {
-    private GameObject rebel;
-    public GameObject rebelRagdoll;
+    public GameObject rebel;
     public GameObject stormTrooper;
     public AudioSource death;
     public AudioSource rebelDeath;
     public Animator animator;
 
-    void Start()
-    {
-        rebel = GameObject.Find("Rebel Idle");
-    }
-
     void OnCollisionEnter(Collision collision)
     {
         Destroy(this.gameObject);
 
-        if (collision.gameObject.name == "Rebel Idle")
+        if (collision.collider.CompareTag("Rebel"))
         {
             Destroy(rebel);
             rebelDeath.Play();

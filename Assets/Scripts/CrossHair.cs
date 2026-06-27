@@ -31,7 +31,7 @@ public class CrossHair : MonoBehaviour
         Vector3 crosshairAngles = this.transform.eulerAngles;
 
         this.transform.rotation = Quaternion.LookRotation(forwardDirection);
-        this.transform.rotation = Quaternion.Euler(crosshairAngles.x, crosshairAngles.y, 0f);
+        this.transform.rotation = Quaternion.Euler(crosshairAngles.x, crosshairAngles.y, 0f); //zeroed out axis'
 
         //Quad Crosshair
         quadCrosshair.transform.position = this.transform.position;
