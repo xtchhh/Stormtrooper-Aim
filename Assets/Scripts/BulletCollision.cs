@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
+
 
 public class BulletCollision : MonoBehaviour
 {
@@ -18,12 +20,14 @@ public class BulletCollision : MonoBehaviour
             Destroy(rebel);
             rebelDeath.Play();
             Debug.Log($"Rebel Killed");
+            SceneManager.LoadScene("New Scene");
         }
 
         if (collision.gameObject.name == "Idle")
         {
             stormTrooper.SetActive(false);
             death.Play();
+            SceneManager.LoadScene("New Scene");
         }
     }
 }

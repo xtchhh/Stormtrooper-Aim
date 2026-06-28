@@ -23,6 +23,11 @@ public class StormTrooper : MonoBehaviour
         playeractions.Enable();
     }
 
+    void OnDisable()
+    {
+        playeractions.Disable();
+    }
+
     void Update()
     {
         Movement();
